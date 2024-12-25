@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Projekat_praksa.Database;
+using Projekat_praksa.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,9 @@ builder.Services.AddIdentityApiEndpoints<User>()
 	.AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+
+builder.Services.AddScoped<IUserContext, UserContext>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
