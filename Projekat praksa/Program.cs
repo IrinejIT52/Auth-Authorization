@@ -32,11 +32,13 @@ builder.Services.AddSwaggerGen(c =>
 	});
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthentication();
 
 
 builder.Services.AddIdentityApiEndpoints<User>()
-	.AddEntityFrameworkStores<UserDbContext>();
+	.AddRoles<IdentityRole>()
+	.AddEntityFrameworkStores<UserDbContext>()
+	.AddDefaultTokenProviders(); 
 
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
@@ -51,6 +53,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 

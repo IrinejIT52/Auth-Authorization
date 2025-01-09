@@ -9,12 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Projekat_praksa.Constants;
 using Projekat_praksa.Database;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Projekat_praksa.Controllers
 {
 	[Route("api/")]
 	[ApiController]
+	[Authorize]
 	public class RolesController : ControllerBase
 	{
 		private readonly UserRepository _userRepository;
@@ -25,6 +27,7 @@ namespace Projekat_praksa.Controllers
 		}
 
 		[HttpPost("addRoles")]
+		[Authorize(Roles ="Owner")]
 		public ActionResult AddRole(IdentityRole role)
 		{
 			_userRepository.AddRole(role);
@@ -33,6 +36,7 @@ namespace Projekat_praksa.Controllers
 		}
 
 		[HttpPost("user/{userid}/role/{roleid}")]
+		[Authorize(Roles = "Owner")]
 		public ActionResult AddUserRole(string userid, string roleid)
 		{
 			_userRepository.AddUserRole(new IdentityUserRole<string> { RoleId = roleid, UserId = userid });
@@ -41,6 +45,7 @@ namespace Projekat_praksa.Controllers
 		}
 
 		[HttpPost("user/{userid}/admin")]
+		[Authorize(Roles = "Owner")]
 		public ActionResult AddUserRoleAdmin(string userid)
 		{
 			_userRepository.AddUserRole(new IdentityUserRole<string> { RoleId = Constants.Constants.adminId, UserId = userid });
@@ -49,6 +54,7 @@ namespace Projekat_praksa.Controllers
 		}
 
 		[HttpPost("user/{userid}/user")]
+		[Authorize(Roles = "Admin")]
 		public ActionResult AddUserRoleUser(string userid)
 		{
 			_userRepository.AddUserRole(new IdentityUserRole<string> { RoleId = Constants.Constants.userId, UserId = userid });
