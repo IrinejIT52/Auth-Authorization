@@ -7,6 +7,7 @@ using Projekat_praksa.User;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,11 +39,6 @@ builder.Services.AddIdentityApiEndpoints<User>()
 	.AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
-
-builder.Services.AddScoped<UserDbContext>();
-builder.Services.AddScoped<UserRepository>();
-
-builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Projekat_praksa.Database
 {
@@ -17,7 +18,7 @@ namespace Projekat_praksa.Database
 			_dbContext.SaveChanges();
 		}
 
-		public void AddUserRole(IdentityUserRole<string> userRole)
+		public void AddUserRole(IdentityUserRole<string> userRole) 
 		{
 			_dbContext.UserRoles.Add(userRole);
 			_dbContext.SaveChanges();
