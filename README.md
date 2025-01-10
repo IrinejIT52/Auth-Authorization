@@ -48,7 +48,7 @@ Before you begin, make sure you have the following installed:
 6. **Test the API**
    - Use Postman or another API testing tool to interact with the endpoints. Refer to the [Authentication Endpoints](#authentication-endpoints) section for a list of available endpoints.
 
-# API Documentation for Identity Endpoints
+# API Documentation for Endpoints
 
 This document provides a complete list of API endpoints for identity management in ASP.NET Core.
 
