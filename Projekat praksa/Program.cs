@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Projekat_praksa.Database;
-using Projekat_praksa.User;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
