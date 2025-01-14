@@ -28,7 +28,7 @@ namespace Projekat_praksa.Controllers
 				return Unauthorized(); 
 			}
 
-			// Retrieve the user from the database
+			
 			var user = await _userManager.FindByIdAsync(userId);
 			if (user == null)
 			{
@@ -58,7 +58,7 @@ namespace Projekat_praksa.Controllers
 				return NotFound("User not found.");
 			}
 
-			// Return the user ID
+			
 			return Ok(new { userId = user.Id });
 
 		}
